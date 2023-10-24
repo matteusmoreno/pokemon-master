@@ -1,5 +1,6 @@
 package com.exemple.pokemonmaster.pokemon.controller;
 
+import com.exemple.pokemonmaster.pokemon.request.UpdatePokemonRequest;
 import com.exemple.pokemonmaster.pokemon.service.PokemonService;
 import com.exemple.pokemonmaster.pokemon.request.CreatePokemonRequest;
 import com.exemple.pokemonmaster.pokemon.response.PokemonDetailsResponse;
@@ -20,6 +21,7 @@ public class PokemonController {
         this.pokemonService = pokemonService;
     }
 
+    // CRIAR NOVO POKEMON
     @PostMapping("/create")
     @Transactional
     public ResponseEntity create (@RequestBody @Valid CreatePokemonRequest request, UriComponentsBuilder uriBuilder) {
@@ -29,6 +31,7 @@ public class PokemonController {
         return ResponseEntity.created(uri).body(new PokemonDetailsResponse(pokemon));
     }
 
+    // BUSCAR POKEMON POR ID
     @GetMapping("/detailsbyid/{id}")
     public ResponseEntity getById(@PathVariable Long id) {
         var pokemon = pokemonService.detailsById(id);
@@ -36,9 +39,18 @@ public class PokemonController {
         return ResponseEntity.ok(new PokemonDetailsResponse(pokemon));
     }
 
+    // BUSCAR POKEMON POR NOME
     @GetMapping("/detailsbyname/{name}")
     public ResponseEntity getByName(@PathVariable String name) {
         var pokemon = pokemonService.detailsByName(name);
+
+        return ResponseEntity.ok(new PokemonDetailsResponse(pokemon));
+    }
+
+    @PutMapping("/update")
+    @Transactional
+    public ResponseEntity update(@RequestBody @Valid UpdatePokemonRequest request) {
+        var pokemon = pokemonService.update(request);
 
         return ResponseEntity.ok(new PokemonDetailsResponse(pokemon));
     }
