@@ -1,10 +1,10 @@
 CREATE TABLE pokemons (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    type VARCHAR(100),
-    image VARCHAR(255),
-    description TEXT,
-    created_at TIMESTAMP,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    type VARCHAR(100) NOT NULL,
+    image VARCHAR(255) NOT NULL UNIQUE,
+    description TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     active BOOLEAN
 );

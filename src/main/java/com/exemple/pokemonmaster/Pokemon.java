@@ -18,7 +18,8 @@ public class Pokemon {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private PokemonType type;
     private String image;
     private String description;
     private LocalDateTime createdAt;
