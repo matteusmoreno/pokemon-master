@@ -1,4 +1,4 @@
-package com.exemple.pokemonmaster;
+package com.exemple.pokemonmaster.pokemon.domain;
 
 import lombok.Getter;
 

@@ -1,5 +1,6 @@
-package com.exemple.pokemonmaster;
+package com.exemple.pokemonmaster.pokemon.request;
 
+import com.exemple.pokemonmaster.pokemon.domain.PokemonType;
 import jakarta.validation.constraints.NotNull;
 
 public record CreatePokemonRequest(

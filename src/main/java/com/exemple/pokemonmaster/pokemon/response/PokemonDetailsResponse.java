@@ -1,4 +1,6 @@
-package com.exemple.pokemonmaster;
+package com.exemple.pokemonmaster.pokemon.response;
+
+import com.exemple.pokemonmaster.pokemon.domain.Pokemon;
 
 import java.time.LocalDateTime;
 

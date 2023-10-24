@@ -1,5 +1,8 @@
-package com.exemple.pokemonmaster;
+package com.exemple.pokemonmaster.pokemon.service;
 
+import com.exemple.pokemonmaster.pokemon.PokemonRepository;
+import com.exemple.pokemonmaster.pokemon.domain.Pokemon;
+import com.exemple.pokemonmaster.pokemon.request.CreatePokemonRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +30,13 @@ public class PokemonService {
         pokemonRepository.save(pokemon);
 
         return pokemon;
+    }
+
+    public Pokemon detailsById(Long id) {
+        return pokemonRepository.findById(id).orElseThrow();
+    }
+
+    public Pokemon detailsByName(String name) {
+        return pokemonRepository.findByName(name);
     }
 }
