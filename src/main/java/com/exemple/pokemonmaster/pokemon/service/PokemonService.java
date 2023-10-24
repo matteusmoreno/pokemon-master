@@ -13,21 +13,16 @@ import java.time.LocalDateTime;
 public class PokemonService {
 
     private final PokemonRepository pokemonRepository;
+    private final PokemonUtils pokemonUtils;
     @Autowired
-    public PokemonService(PokemonRepository pokemonRepository) {
+    public PokemonService(PokemonRepository pokemonRepository, PokemonUtils pokemonUtils) {
         this.pokemonRepository = pokemonRepository;
+        this.pokemonUtils = pokemonUtils;
     }
 
     public Pokemon create(CreatePokemonRequest request) {
         Pokemon pokemon = new Pokemon();
-
-        pokemon.setName(request.name());
-        pokemon.setType(request.type());
-        pokemon.setImage(request.image());
-        pokemon.setDescription(request.description());
-        pokemon.setCreatedAt(LocalDateTime.now());
-        pokemon.setActive(true);
-
+        pokemonUtils.setCreateAttributes(pokemon, request);
         pokemonRepository.save(pokemon);
 
         return pokemon;
@@ -43,24 +38,7 @@ public class PokemonService {
 
     public Pokemon update(UpdatePokemonRequest request) {
         var pokemon = pokemonRepository.findById(request.id()).orElseThrow();
-
-        if (request.name() != null) {
-            pokemon.setName(request.name());
-        }
-
-        if (request.type() != null) {
-            pokemon.setType(request.type());
-        }
-
-        if (request.image() != null) {
-            pokemon.setImage(request.image());
-        }
-
-        if (request.description() != null) {
-            pokemon.setDescription(request.description());
-        }
-
-        pokemon.setUpdatedAt(LocalDateTime.now());
+        pokemonUtils.setUpdateAttributes(pokemon, request);
         pokemonRepository.save(pokemon);
 
         return pokemon;
