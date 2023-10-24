@@ -54,4 +54,12 @@ public class PokemonController {
 
         return ResponseEntity.ok(new PokemonDetailsResponse(pokemon));
     }
+
+    @DeleteMapping("/desactive/{id}")
+    @Transactional
+    public ResponseEntity desactive(@PathVariable Long id) {
+        pokemonService.desactive(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }

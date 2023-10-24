@@ -43,4 +43,11 @@ public class PokemonService {
 
         return pokemon;
     }
+
+    public void desactive(Long id) {
+        var pokemon = pokemonRepository.findById(id).orElseThrow();
+        pokemon.setActive(false);
+        pokemonRepository.save(pokemon);
+
+    }
 }
