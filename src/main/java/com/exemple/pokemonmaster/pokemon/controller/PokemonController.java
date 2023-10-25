@@ -47,6 +47,7 @@ public class PokemonController {
         return ResponseEntity.ok(new PokemonDetailsResponse(pokemon));
     }
 
+    // ATUALIZAR POKEMON
     @PutMapping("/update")
     @Transactional
     public ResponseEntity update(@RequestBody @Valid UpdatePokemonRequest request) {
@@ -55,11 +56,21 @@ public class PokemonController {
         return ResponseEntity.ok(new PokemonDetailsResponse(pokemon));
     }
 
-    @DeleteMapping("/desactive/{id}")
+    // DESATIVAR POKEMON
+    @PutMapping("/desactive/{id}")
     @Transactional
     public ResponseEntity desactive(@PathVariable Long id) {
-        pokemonService.desactive(id);
+        var pokemon = pokemonService.desactive(id);
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().body(new PokemonDetailsResponse(pokemon));
+    }
+
+    // ATIVAR POKEMON
+    @PutMapping("/active/{id}")
+    @Transactional
+    public ResponseEntity active(@PathVariable Long id) {
+        var pokemon = pokemonService.active(id);
+
+        return ResponseEntity.ok().body(new PokemonDetailsResponse(pokemon));
     }
 }
