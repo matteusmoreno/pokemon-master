@@ -1,5 +1,6 @@
-package com.exemple.pokemonmaster.pokemon.domain;
+package com.exemple.pokemonmaster.pokemon_master;
 
+import com.exemple.pokemonmaster.pokemon.domain.Pokemon;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,21 +8,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "pokemons")
+@Table(name = "pokemon_master")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-public class Pokemon {
+public class PokemonMaster {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Enumerated(EnumType.STRING)
-    private PokemonType type;
-    private String image;
-    private String description;
+    private City city;
+    @OneToMany(mappedBy = "pokemonMaster")
+    private List<Pokemon> pokemon;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private Boolean active;
