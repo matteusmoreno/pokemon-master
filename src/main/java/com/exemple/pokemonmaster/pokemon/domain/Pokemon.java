@@ -1,5 +1,6 @@
 package com.exemple.pokemonmaster.pokemon.domain;
 
+import com.exemple.pokemonmaster.pokemon_master.PokemonMaster;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,9 @@ public class Pokemon {
     private PokemonType type;
     private String image;
     private String description;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pokemon_master_id")
+    private PokemonMaster pokemonMaster;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private Boolean active;

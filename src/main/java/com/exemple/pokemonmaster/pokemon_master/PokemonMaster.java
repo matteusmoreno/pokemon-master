@@ -21,7 +21,7 @@ public class PokemonMaster {
     private Long id;
     private String name;
     private City city;
-    @OneToMany(mappedBy = "pokemonMaster")
+    @OneToMany
     private List<Pokemon> pokemon;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
