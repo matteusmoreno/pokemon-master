@@ -8,6 +8,8 @@
 
 Bem-vindo ao Pokemon Master, uma aplicação de gerenciamento de Pokémons onde você pode criar e controlar treinadores de Pokémon e seus Pokémon. Esta aplicação é construída com Java, Spring Boot, MySQL, Flyway e Lombok.
 
+![Pikachu](https://seeklogo.com/images/P/Pikachu-logo-D0AAA93F17-seeklogo.com.png)
+
 ## Funcionalidades
 
 - Crie, atualize, desative e ative Pokémon.
@@ -51,3 +53,5 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas e soli
 ---
 
 Desenvolvido por [Matteus Moreno](https://github.com/matteusmoreno)
+
+
