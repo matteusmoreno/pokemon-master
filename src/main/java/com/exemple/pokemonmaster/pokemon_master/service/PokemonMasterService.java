@@ -1,7 +1,9 @@
 package com.exemple.pokemonmaster.pokemon_master.service;
 
+import com.exemple.pokemonmaster.pokemon.PokemonRepository;
 import com.exemple.pokemonmaster.pokemon_master.PokemonMasterRepository;
 import com.exemple.pokemonmaster.pokemon_master.domain.PokemonMaster;
+import com.exemple.pokemonmaster.pokemon_master.request.AddPokemonRequest;
 import com.exemple.pokemonmaster.pokemon_master.request.CreatePokemonMasterRequest;
 import com.exemple.pokemonmaster.pokemon_master.request.UpdatePokemonMasterRequest;
 import org.springframework.stereotype.Service;
@@ -12,9 +14,11 @@ import java.time.LocalDateTime;
 public class PokemonMasterService {
 
     private final PokemonMasterRepository pokemonMasterRepository;
+    private final PokemonRepository pokemonRepository;
 
-    public PokemonMasterService(PokemonMasterRepository pokemonMasterRepository) {
+    public PokemonMasterService(PokemonMasterRepository pokemonMasterRepository, PokemonRepository pokemonRepository) {
         this.pokemonMasterRepository = pokemonMasterRepository;
+        this.pokemonRepository = pokemonRepository;
     }
 
     public PokemonMaster create(CreatePokemonMasterRequest request) {
@@ -60,6 +64,16 @@ public class PokemonMasterService {
     public PokemonMaster active(Long id) {
         var pokemonMaster = pokemonMasterRepository.findById(id).orElseThrow();
         pokemonMaster.setActive(true);
+        pokemonMasterRepository.save(pokemonMaster);
+
+        return pokemonMaster;
+    }
+
+    public PokemonMaster addPokemon(AddPokemonRequest request) {
+        var pokemonMaster = pokemonMasterRepository.findById(request.pokemonMasterId()).orElseThrow();
+        var pokemon = pokemonRepository.findById(request.pokemonId()).orElseThrow();
+
+        pokemonMaster.getPokemon().add(pokemon);
         pokemonMasterRepository.save(pokemonMaster);
 
         return pokemonMaster;

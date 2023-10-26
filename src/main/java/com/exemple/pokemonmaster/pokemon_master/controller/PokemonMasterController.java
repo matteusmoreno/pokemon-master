@@ -1,5 +1,6 @@
 package com.exemple.pokemonmaster.pokemon_master.controller;
 
+import com.exemple.pokemonmaster.pokemon_master.request.AddPokemonRequest;
 import com.exemple.pokemonmaster.pokemon_master.request.CreatePokemonMasterRequest;
 import com.exemple.pokemonmaster.pokemon_master.request.UpdatePokemonMasterRequest;
 import com.exemple.pokemonmaster.pokemon_master.response.PokemonMasterDetailsResponse;
@@ -61,6 +62,15 @@ public class PokemonMasterController {
     @Transactional
     public ResponseEntity active(@PathVariable Long id) {
         var pokemonMaster = pokemonMasterService.active(id);
+
+        return ResponseEntity.ok(new PokemonMasterDetailsResponse(pokemonMaster));
+    }
+
+    // ADICIONAR UM POKEMON AO POKEMON MASTER
+    @PutMapping("/add-pokemon")
+    @Transactional
+    public ResponseEntity addPokemon(@RequestBody @Valid AddPokemonRequest request) {
+        var pokemonMaster = pokemonMasterService.addPokemon(request);
 
         return ResponseEntity.ok(new PokemonMasterDetailsResponse(pokemonMaster));
     }
