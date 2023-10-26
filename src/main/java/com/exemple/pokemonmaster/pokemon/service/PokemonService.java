@@ -7,8 +7,6 @@ import com.exemple.pokemonmaster.pokemon.request.UpdatePokemonRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 public class PokemonService {
 
@@ -44,7 +42,7 @@ public class PokemonService {
         return pokemon;
     }
 
-    public Pokemon desactive(Long id) {
+    public Pokemon disable(Long id) {
         var pokemon = pokemonRepository.findById(id).orElseThrow();
         pokemon.setActive(false);
         pokemonRepository.save(pokemon);

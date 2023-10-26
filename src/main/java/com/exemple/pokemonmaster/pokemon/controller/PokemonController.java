@@ -57,10 +57,10 @@ public class PokemonController {
     }
 
     // DESATIVAR POKEMON
-    @PutMapping("/desactive/{id}")
+    @PutMapping("/disable/{id}")
     @Transactional
-    public ResponseEntity desactive(@PathVariable Long id) {
-        var pokemon = pokemonService.desactive(id);
+    public ResponseEntity disble(@PathVariable Long id) {
+        var pokemon = pokemonService.disable(id);
 
         return ResponseEntity.ok().body(new PokemonDetailsResponse(pokemon));
     }

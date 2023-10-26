@@ -1,6 +1,7 @@
 package com.exemple.pokemonmaster.pokemon_master.controller;
 
 import com.exemple.pokemonmaster.pokemon_master.request.CreatePokemonMasterRequest;
+import com.exemple.pokemonmaster.pokemon_master.request.UpdatePokemonMasterRequest;
 import com.exemple.pokemonmaster.pokemon_master.response.PokemonMasterDetailsResponse;
 import com.exemple.pokemonmaster.pokemon_master.service.PokemonMasterService;
 import jakarta.transaction.Transactional;
@@ -33,6 +34,33 @@ public class PokemonMasterController {
     @GetMapping("/details/{id}")
     public ResponseEntity details(@PathVariable Long id) {
         var pokemonMaster = pokemonMasterService.details(id);
+
+        return ResponseEntity.ok(new PokemonMasterDetailsResponse(pokemonMaster));
+    }
+
+    // ATUALIZAR UM POKEMON MASTER
+    @PutMapping("/update")
+    @Transactional
+    public ResponseEntity update(@RequestBody @Valid UpdatePokemonMasterRequest request) {
+        var pokemonMaster = pokemonMasterService.update(request);
+
+        return ResponseEntity.ok(new PokemonMasterDetailsResponse(pokemonMaster));
+    }
+
+    // DESATIVAR UM POKEMON MASTER
+    @PutMapping("/disable/{id}")
+    @Transactional
+    public ResponseEntity disable(@PathVariable Long id) {
+        var pokemonMaster = pokemonMasterService.disable(id);
+
+        return ResponseEntity.ok(new PokemonMasterDetailsResponse(pokemonMaster));
+    }
+
+    // ATIVAR UM POKEMON MASTER
+    @PutMapping("/active/{id}")
+    @Transactional
+    public ResponseEntity active(@PathVariable Long id) {
+        var pokemonMaster = pokemonMasterService.active(id);
 
         return ResponseEntity.ok(new PokemonMasterDetailsResponse(pokemonMaster));
     }
