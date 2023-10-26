@@ -1,5 +1,8 @@
-package com.exemple.pokemonmaster.pokemon_master;
+package com.exemple.pokemonmaster.pokemon_master.service;
 
+import com.exemple.pokemonmaster.pokemon_master.PokemonMasterRepository;
+import com.exemple.pokemonmaster.pokemon_master.domain.PokemonMaster;
+import com.exemple.pokemonmaster.pokemon_master.request.CreatePokemonMasterRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,5 +25,9 @@ public class PokemonMasterService {
 
         pokemonMasterRepository.save(pokemonMaster);
         return pokemonMaster;
+    }
+
+    public PokemonMaster details(Long id) {
+        return pokemonMasterRepository.findById(id).orElseThrow();
     }
 }

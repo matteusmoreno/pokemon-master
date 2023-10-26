@@ -1,6 +1,7 @@
-package com.exemple.pokemonmaster.pokemon_master;
+package com.exemple.pokemonmaster.pokemon_master.response;
 
 import com.exemple.pokemonmaster.pokemon.domain.Pokemon;
+import com.exemple.pokemonmaster.pokemon_master.domain.PokemonMaster;
 
 import java.time.LocalDateTime;
 import java.util.List;
